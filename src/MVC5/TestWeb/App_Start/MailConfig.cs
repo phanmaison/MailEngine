@@ -29,7 +29,7 @@ namespace TestWeb
                 }
             };
 
-            DefaultMailEngine.DefaultEngine = new DefaultMailEngine(
+            MailClient.Default = new MailClient(
                 smtpEmailClient,
                 "test@mailengine.com",
                 "Test Mail Engine"

@@ -13,30 +13,29 @@ namespace MailEngine
     /// <seealso cref="T:System.Net.Mail.MailMessage" />
     public class Email : MailMessage
     {
-        #region MailEngine
+        #region MailClient
 
         /// <summary>
         /// Gets or sets the mail engine.
         /// </summary>
-        public DefaultMailEngine MailEngine { get; }
+        public MailClient MailClient { get; }
 
-        #endregion MailEngine
+        #endregion MailClient
 
         #region Constructor
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Email"/> class
         /// </summary>
-        /// <param name="engine">The engine</param>
-        public Email(DefaultMailEngine engine)
+        /// <param name="client">The engine</param>
+        public Email(MailClient client)
         {
             this.BodyEncoding = Encoding.UTF8;
-            //this.DeliveryNotificationOptions
             this.IsBodyHtml = true;
-            this.MailEngine = engine;
+            this.MailClient = client;
             this.SubjectEncoding = Encoding.UTF8;
 
-            this.From = new MailAddress(engine.FromEmail, engine.FromName);
+            this.From = new MailAddress(client.FromEmail, client.FromName);
         }
 
         #endregion Constructor
@@ -64,13 +63,13 @@ namespace MailEngine
         /// <summary>
         /// Create new email
         /// </summary>
-        /// <param name="engine">The engine</param>
-        public static Email Create(DefaultMailEngine engine = null)
+        /// <param name="client">The engine</param>
+        public static Email Create(MailClient client = null)
         {
-            if (engine == null)
-                engine = DefaultMailEngine.DefaultEngine;
+            if (client == null)
+                client = MailClient.Default;
 
-            var mail = new Email(engine);
+            var mail = new Email(client);
 
             return mail;
         }
@@ -398,40 +397,5 @@ namespace MailEngine
         #endregion SetAttachment
 
         #endregion Set Properties
-
-        #region Send
-
-        ///// <summary>
-        ///// Sends this email (should not be called directly), use SendAndLog or SendTestEmail instead
-        ///// </summary>
-        //public void SendInternal(bool dispose = true, bool throwException = true)
-        //{
-        //    try
-        //    {
-        //        MailEngine.Send(this);
-
-        //        if (dispose)
-        //            this.Dispose();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        if (throwException)
-        //            throw;
-        //    }
-        //} 
-
-        ///// <summary>
-        ///// Sends the asyc.
-        ///// </summary>
-        ///// <returns></returns>
-        //public async Task SendAsyc(bool dispose = true)
-        //{
-        //    await MailEngine.SendAsync(this);
-
-        //    if (dispose)
-        //        this.Dispose();
-        //}
-
-        #endregion Send
     }
 }

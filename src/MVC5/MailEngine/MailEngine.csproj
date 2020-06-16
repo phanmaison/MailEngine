@@ -55,7 +55,7 @@
     <Compile Include="Exception\MissingEmailClientException.cs" />
     <Compile Include="Exception\MissingInformationException.cs" />
     <Compile Include="EmailClient\MockEmailClient.cs" />
-    <Compile Include="DefaultMailEngine.cs" />
+    <Compile Include="MailClient.cs" />
     <Compile Include="EmailClient\SmtpEmailClient.cs" />
   </ItemGroup>
   <ItemGroup>

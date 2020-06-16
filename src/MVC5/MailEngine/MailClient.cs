@@ -9,19 +9,16 @@ namespace MailEngine
     /// <para>Wrapper of EmailClient and RazorEngineService</para>
     /// </summary>
     /// <seealso cref="System.IDisposable" />
-    public class DefaultMailEngine : IDisposable
+    public class MailClient : IDisposable
     {
-        #region DefaultEngine
+        #region DefaultClient
 
         /// <summary>
         /// Get current instance which is initialized when application start
         /// </summary>
-        /// <value>
-        /// The instance.
-        /// </value>
-        public static DefaultMailEngine DefaultEngine { get; set; }
+        public static MailClient Default { get; set; }
 
-        #endregion DefaultEngine
+        #endregion DefaultClient
 
         #region Properties
 
@@ -55,7 +52,7 @@ namespace MailEngine
         /// <param name="emailClient">The method by which to send the email</param>
         /// <param name="fromEmail">The address the email is from. e.g. hello@yoursite.com</param>
         /// <param name="fromName">The name the email is from. e.g. Your Site</param>
-        public DefaultMailEngine(IEmailClient emailClient, string fromEmail, string fromName)
+        public MailClient(IEmailClient emailClient, string fromEmail, string fromName)
         {
             this.FromName = fromName;
             this.FromEmail = fromEmail;
@@ -63,39 +60,6 @@ namespace MailEngine
         }
 
         #endregion Constructor
-
-        #region RazorEngineService
-
-        #region BuildContentFromTemplate
-
-        ///// <summary>
-        ///// Compile and run the template without a model
-        ///// </summary>
-        ///// <param name="templatePath">Either absolute path or relative path (to the root email template folder)</param>
-        ///// <returns></returns>
-        //internal string BuildContentFromTemplate(string templatePath)
-        //{
-        //    ITemplateKey key = this.RazorEngineService.GetKey(templatePath);
-        //    return this.RazorEngineService.RunCompile(key);
-        //}
-
-        ///// <summary>
-        ///// Compile and run the template with model
-        ///// </summary>
-        ///// <typeparam name="T">Type of model</typeparam>
-        ///// <param name="templatePath">Either absolute path or relative path (to the root email template folder)</param>
-        ///// <param name="model">The model for the template</param>
-        ///// <param name="viewBag">The view bag.</param>
-        ///// <returns></returns>
-        //internal string BuildContentFromTemplate<T>(string templatePath, T model, DynamicViewBag viewBag = null)
-        //{
-        //    ITemplateKey key = this.RazorEngineService.GetKey(templatePath);
-        //    return this.RazorEngineService.RunCompile(key, typeof(T), model, viewBag);
-        //}
-
-        #endregion BuildContentFromTemplate
-
-        #endregion RazorEngineService
 
         #region Send
 
