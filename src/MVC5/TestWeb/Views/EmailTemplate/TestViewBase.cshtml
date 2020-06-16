@@ -1,0 +1,20 @@
+﻿@{
+    long Salary = 5000;
+}
+
+<p>
+    This template is to test functions defined in ViewBase (TestWeb.EmailViewBase)
+</p>
+<p style="color: @ColorText">Today: @FormatDate(DateTime.Today)</p>
+<p>
+    Current Salary: @Salary
+    @if (Salary < 10000)
+    {
+        <text>(low salary)</text>
+    }
+    else
+    {
+        <text>(high salary)</text>
+    }
+</p>
+<p>Next Salary: @CalculateNextSalary(Salary)</p>

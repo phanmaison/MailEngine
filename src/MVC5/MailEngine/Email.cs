@@ -3,6 +3,7 @@ using System.Text;
 using System.Net.Mail;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace MailEngine
@@ -76,21 +77,28 @@ namespace MailEngine
 
         #endregion Create
 
-        #region Set Properties
-
-        #region Language
+        #region Send
 
         /// <summary>
-        /// Gets or sets the language of the email
+        /// Sends this email using the mail client
         /// </summary>
-        public string Language { get; set; }
+        public void Send()
+        {
+            MailClient.Send(this);
+        }
 
-        #endregion Language
+        /// <summary>
+        /// Sends the asynchronous.
+        /// </summary>
+        public async Task SendAsync()
+        {
+            await MailClient.SendAsync(this);
+        }
 
-        #region IsInternal
-        public bool IsInternal { get; set; }
 
-        #endregion IsInternal
+        #endregion Send
+
+        #region Set Properties
 
         #region SetToAddress
 

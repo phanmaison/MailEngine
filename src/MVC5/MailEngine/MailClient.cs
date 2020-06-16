@@ -69,7 +69,7 @@ namespace MailEngine
         /// <param name="mail">The mail.</param>
         public void Send(MailMessage mail)
         {
-            this.EmailClient.SendAsync(mail);
+            this.EmailClient.Send(mail);
         }
 
         /// <summary>

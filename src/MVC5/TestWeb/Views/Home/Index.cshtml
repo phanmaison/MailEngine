@@ -1,13 +1,35 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@helper RenderTest(string actionName)
+{
+    <td>
+        <a target="email_test" href="@Url.Action(actionName, "Mail")/?send=false">Test</a>
+    </td>
+    <td>
+        <a target="email_test" href="@Url.Action(actionName, "Mail")/?send=true">Send</a>
+    </td>
+
+}
 
 <div class="jumbotron">
     <h1>Mail Engine Test</h1>
     <p class="lead">
         This is test page for email, you can either do unit-testing (showing the email content on a web page) or sending real email.<br />
-        Kindly do NOT change the email password so that other can start the testing immediately.<br/>
-
+        <ul>
+            <li>
+                Kindly do NOT change the email password so that other can start the testing immediately.
+            </li>
+            <li>
+                You can test either using web-page or sending real email.<br />
+            </li>
+            <li>
+                The To email address is defined in MailConfig.cs.<br />
+            </li>
+            <li>
+                If you are using gmail, please enable Smtp and <a href="https://myaccount.google.com/lesssecureapps" target="_blank">less secured app</a>
+            </li>
+        </ul>
     </p>
 </div>
 
@@ -15,21 +37,26 @@
     <thead>
         <tr class="bg-warning">
             <td>Name</td>
-            <td>Unit Test</td>
-            <td>Email</td>
+            <td>Web View</td>
+            <td>Send Email</td>
             <td>Description</td>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>View Bag</td>
-            <td>
-                <a href="">Test</a>
-            </td>
-            <td>
-                <a href="">Send</a>
-            </td>
-            <td>Test ViewBag/ViewData</td>
+            @RenderTest("TestViewBag")
+            <td>Test ViewBag/ViewData: display data from ViewBag / ViewData</td>
+        </tr>
+        <tr>
+            <td>Model</td>
+            @RenderTest("TestModel")
+            <td>Passing model to email template</td>
+        </tr>
+        <tr>
+            <td>ViewBase</td>
+            @RenderTest("TestViewBase")
+            <td>You can define functions in ViewBase and use them in the template</td>
         </tr>
     </tbody>
 </table>
