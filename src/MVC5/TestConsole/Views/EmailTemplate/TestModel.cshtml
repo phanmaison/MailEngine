@@ -1,0 +1,16 @@
+﻿@model TestWeb.Models.CustomerModel
+    
+<p>Hi @Model.CustomerName,</p>
+
+<p>Your budget: @Model.TotalBudget</p>
+<p>Total order purchased: @Model.OrderCount</p>
+<p>
+    @if (Model.OrderCount > 100)
+    {
+        <text>Thank you, you have reached the requirement for Platinum customer</text>
+    }
+    else
+    {
+        <text>You need to purchase @(100 - Model.OrderCount) orders more to be Platinum customer</text>
+    }
+</p>

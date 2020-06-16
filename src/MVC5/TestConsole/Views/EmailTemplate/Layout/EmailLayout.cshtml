@@ -1,0 +1,183 @@
+﻿@{
+}
+<!DOCTYPE html>
+<html lang="vn" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="x-apple-disable-message-reformatting">
+    <title>@ViewBag.Title</title>
+    <style>
+        @*
+        What it does: Remove spaces around the email design added by some email clients.
+        Beware: It can remove the padding / margin and add a background color to the compose a reply window.
+        *@
+        html, body
+        {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        @* What it does: Stops email clients resizing small text. *@
+        *
+        {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        @* What it does: Centers email on Android 4.4 *@
+        div[style*="margin: 16px 0"]
+        {
+            margin: 0 !important;
+        }
+
+        @* What it does: Stops Outlook from adding extra spacing to tables. *@
+        table, td
+        {
+            mso-table-lspace: 0 !important;
+            mso-table-rspace: 0 !important;
+        }
+
+        @* What it does: Uses a better rendering method when resizing images in IE. *@
+        img
+        {
+            -ms-interpolation-mode: bicubic;
+        }
+
+        @* What it does: Prevents Windows 10 Mail from underlining links despite inline CSS. Styles for underlined links should be inline. *@
+        a
+        {
+            text-decoration: none;
+        }
+
+        @* What it does: A work-around for email clients meddling in triggered links. *@
+        /**[x-apple-data-detectors], @* iOS *@
+        .unstyle-auto-detected-links *,
+        .aBn
+        {
+            border-bottom: 0 !important;
+            cursor: default !important;
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+    </style>
+
+    <style>
+
+        @* Media Queries *@
+        @@media screen and (max-width: 480px)
+        {
+            @* What it does: Forces elements to resize to the full width of their container.
+            Useful for resizing images beyond their max-width. *@
+            .fluid
+            {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            @* What it does: Forces table cells into full-width rows. *@
+            .stack-column,
+            .stack-column-center
+            {
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                direction: ltr !important;
+            }
+            @* And center justify these ones. *@
+            .stack-column-center
+            {
+                text-align: center !important;
+            }
+            @* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. *@
+            .center-on-narrow
+            {
+                text-align: center !important;
+                display: block !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                float: none !important;
+            }
+
+            table.center-on-narrow
+            {
+                display: inline-block !important;
+            }
+        }
+
+        @* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89 *@ @* Create one of these media queries for each additional viewport size you d like to fix *@ @* iPhone 4, 4S, 5, 5S, 5C, and 5SE *@
+        @@media only screen and (min-device-width: 320px) and (max-device-width: 374px)
+        {
+            .table-container
+            {
+                min-width: 320px !important;
+            }
+        }
+
+        @* iPhone 6, 6S, 7, 8, and X *@
+        @@media only screen and (min-device-width: 375px) and (max-device-width: 413px)
+        {
+            .table-container
+            {
+                min-width: 375px !important;
+            }
+        }
+
+        @* iPhone 6+, 7+, and 8+ *@
+        @@media only screen and (min-device-width: 414px)
+        {
+            .table-container
+            {
+                min-width: 414px !important;
+            }
+        }
+        @* Remove background on mobile *@
+        @@media screen and (max-width: 600px)
+        {
+            .table-container {
+                background-color: #ffffff !important;
+            }
+        }
+    </style>
+</head>
+<body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #cccccc;">
+    <table bgcolor="#cccccc" style="width: 100%; background-color: #cccccc;" class="table-container">
+        <tr>
+            <td style="padding: 20px 0;">
+                <table align="center" bgcolor="#ffffff" border="0" bordercolor="none" cellpadding="0" cellspacing="0" width="600" style="background-color: #ffffff; border: 1px solid #555555 ;">
+                    @* Logo *@
+                    <tr>
+                        <td style="text-align: right; padding-bottom: 10px; padding-top: 10px; padding-right: 10px;">
+                            This is email logo
+                        </td>
+                    </tr>
+                    @* Email Header *@
+                    <tr>
+                        <td style="background-color: #999999; color: #ffffff; font-size: 24px; padding: 20px 10px; text-align: center;">@ViewBag.Title</td>
+                    </tr>
+                    @* Email Content *@
+                    <tr>
+                        <td style="padding: 15px;">
+                            @RenderBody()
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 10px; background-color: #999999; color: #ffffff; padding: 10px;">
+                            This is email footer
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
